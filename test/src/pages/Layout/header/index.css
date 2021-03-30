@@ -1,0 +1,16 @@
+.header {
+  height: 60px;
+  box-shadow: 0 0 4px rgba(0, 0, 0, 0.2);
+  padding: 0 20px;
+}
+.user-box {
+  float: right;
+  padding-top: 10px;
+}
+.user-box .name {
+  float: left;
+  margin-right: 10px;
+}
+.user-box p {
+  margin-bottom: 0;
+}
