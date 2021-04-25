@@ -1,4 +1,4 @@
-import React from 'react';
+import React, { useState, useEffect} from 'react';
 import ReactDOM from 'react-dom';
 import './index.css';
 import { BrowserRouter } from "react-router-dom"
@@ -10,18 +10,16 @@ import Routes from './config/router'
 import { Provider }  from './context/index'
 import store from './redux/index'
 import { setCollapsed } from './redux/actionCreators'
-let stores = {
-  collapsed: false
-}
+let collapsed = true
+
 function toggleCollapsed() {
-  const action = setCollapsed(!stores.collapsed);
+  const action = setCollapsed(!store.getState().collapsed);
   store.dispatch(action)
-  stores = store.getState()
 }
 ReactDOM.render(
   <BrowserRouter>
     <div className='page-box'>
-      <Provider value={stores}>
+      <Provider value={collapsed}>
         <Slider/>
       </Provider>
       <div className="container">

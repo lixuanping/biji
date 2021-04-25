@@ -11,10 +11,15 @@ import {
 const { SubMenu } = Menu;
 
 function Slider(props) {
-    let collapsed = store.getState().collapsed
+  console.log(111, props)
+    console.log(store.getState())
+    setTimeout(() => {
+      console.log(store.getState())
+    }, 3000)
+    // const [collapsed, setCollapsed] = store.getState() ? store.getState().collapsed
     useEffect(() => {
-      // console.log(3333)
-    }, [collapsed])
+      console.log(3333)
+    }, [store.getState().collapsed])
     // function clickMenuItem(e) {
     //   history.push('/activityManagement')
     // }
@@ -22,35 +27,37 @@ function Slider(props) {
       <Consumer>
         {
           (collapsed) => {
-            <div className="slider" style={{width: collapsed ? 80 : 200}}>
-              <Menu
-                defaultSelectedKeys={['1']}
-                defaultOpenKeys={['sub1']}
-                mode="inline"
-                theme="dark"
-                inlineCollapsed={collapsed}
-              >
-                {
-                  routerConfig.menu.map(item => {
-                    return (
-                      item.route == 1 && !item.hidden ? !item.children ?
-                      <Menu.Item onClick={() => clickMenuItem(item)} key={item.id} icon={<PieChartOutlined />}>
-                        {item.meta.title}
-                      </Menu.Item> :
-                      <SubMenu key={item.id} icon={<MailOutlined />} title={item.meta.title}>
-                          {item.children.map(options => {
-                            return (
-                              !options.hidden ? 
-                              <Menu.Item onClick={() => clickMenuItem(options)} key={options.id}>{options.meta.title}</Menu.Item>
-                              : null
-                            )
-                          })}
-                      </SubMenu> : null
-                    )
-                  })
-                }
-              </Menu>
-          </div>
+            return (
+              <div className="slider" style={{width: collapsed ? 80 : 200}}>
+                <Menu
+                  defaultSelectedKeys={['1']}
+                  defaultOpenKeys={['sub1']}
+                  mode="inline"
+                  theme="dark"
+                  inlineCollapsed={collapsed}
+                >
+                  {
+                    routerConfig.menu.map(item => {
+                      return (
+                        item.route == 1 && !item.hidden ? !item.children ?
+                        <Menu.Item onClick={() => clickMenuItem(item)} key={item.id} icon={<PieChartOutlined />}>
+                          {item.meta.title}
+                        </Menu.Item> :
+                        <SubMenu key={item.id} icon={<MailOutlined />} title={item.meta.title}>
+                            {item.children.map(options => {
+                              return (
+                                !options.hidden ? 
+                                <Menu.Item onClick={() => clickMenuItem(options)} key={options.id}>{options.meta.title}</Menu.Item>
+                                : null
+                              )
+                            })}
+                        </SubMenu> : null
+                      )
+                    })
+                  }
+                </Menu>
+              </div>
+            )
           }
         }
       </Consumer>

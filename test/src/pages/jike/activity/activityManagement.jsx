@@ -6,11 +6,11 @@ import { DatePicker, Space } from 'antd';
 const { RangePicker } = DatePicker;
 
 const tabBarExtraContent = () => {
-  // return (
+  return (
     <div>
-      22222
+      <RangePicker/>
     </div>
-  // )
+  )
 }
 
 export default function activityManagement() {
@@ -23,22 +23,19 @@ export default function activityManagement() {
       console.log(key);
     }
     
-    
     return (
-        <div className='box'>
-          {/* {<{tabBarExtraContent} />} */}
-          {tabBarExtraContent}
-          <Tabs defaultActiveKey="0" onChange={callback}>
-              {
-                tabList.map((tab, index) => {
-                  return (
-                    <TabPane tab={tab} key={index}>
-                      {tab}
-                    </TabPane>
-                  )
-                })
-              }
-          </Tabs>
-        </div>
+      <div className='box'>
+        <Tabs defaultActiveKey="0" onChange={callback} tabBarExtraContent={tabBarExtraContent()}>
+            {
+              tabList.map((tab, index) => {
+                return (
+                  <TabPane tab={tab} key={index}>
+                    {tab}
+                  </TabPane>
+                )
+              })
+            }
+        </Tabs>
+      </div>
     )
 }
